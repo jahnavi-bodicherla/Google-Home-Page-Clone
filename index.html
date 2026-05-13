@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google-like favicon via SVG data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>" />
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" role="banner">
+    <nav class="nav" aria-label="Main navigation">
+
+      <!-- Left nav links -->
+      <div class="nav__left">
+        <a href="#" class="nav__link">About</a>
+        <a href="#" class="nav__link">Store</a>
+      </div>
+
+      <!-- Right nav actions -->
+      <div class="nav__right">
+        <a href="#" class="nav__link">Gmail</a>
+        <a href="#" class="nav__link">Images</a>
+
+        <!-- Grid / apps menu icon -->
+        <button class="nav__icon-btn" aria-label="Google apps" title="Google apps">
+          <svg class="nav__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="4" height="4" rx=".5"/>
+            <rect x="10" y="3" width="4" height="4" rx=".5"/>
+            <rect x="17" y="3" width="4" height="4" rx=".5"/>
+            <rect x="3" y="10" width="4" height="4" rx=".5"/>
+            <rect x="10" y="10" width="4" height="4" rx=".5"/>
+            <rect x="17" y="10" width="4" height="4" rx=".5"/>
+            <rect x="3" y="17" width="4" height="4" rx=".5"/>
+            <rect x="10" y="17" width="4" height="4" rx=".5"/>
+            <rect x="17" y="17" width="4" height="4" rx=".5"/>
+          </svg>
+        </button>
+
+        <!-- Profile avatar -->
+        <button class="nav__avatar" aria-label="Google Account" title="Google Account">
+          <span class="nav__avatar-letter" aria-hidden="true">A</span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="main" role="main">
+
+    <!-- Google Logo -->
+    <section class="logo-section" aria-label="Google logo">
+      <div class="logo" aria-label="Google">
+        <span class="logo__letter logo__letter--blue">G</span>
+        <span class="logo__letter logo__letter--red">o</span>
+        <span class="logo__letter logo__letter--yellow">o</span>
+        <span class="logo__letter logo__letter--blue">g</span>
+        <span class="logo__letter logo__letter--green">l</span>
+        <span class="logo__letter logo__letter--red">e</span>
+      </div>
+    </section>
+
+    <!-- Search Bar Section -->
+    <section class="search-section" aria-label="Search">
+
+      <div class="search-bar" role="search">
+        <!-- Search icon (left) -->
+        <span class="search-bar__icon search-bar__icon--search" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </span>
+
+        <!-- Input -->
+        <input
+          class="search-bar__input"
+          type="search"
+          name="q"
+          autocomplete="off"
+          aria-label="Search"
+          aria-autocomplete="both"
+          spellcheck="false"
+          maxlength="2048"
+          placeholder=""
+          title="Search"
+        />
+
+        <!-- Right icons group -->
+        <div class="search-bar__right-icons" aria-hidden="true">
+          <!-- Voice icon -->
+          <button class="search-bar__icon-btn" aria-label="Search by voice" title="Search by voice">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3z"/>
+              <path d="M17 12c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-2.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+            </svg>
+          </button>
+          <!-- Lens icon -->
+          <button class="search-bar__icon-btn" aria-label="Search by image" title="Search by image">
+            <svg viewBox="0 0 192 192" focusable="false">
+              <path d="M160 16H32C22.4 16 16 22.4 16 32v128c0 9.6 6.4 16 16 16h128c9.6 0 16-6.4 16-16V32c0-9.6-6.4-16-16-16zM96 144c-26.4 0-48-21.6-48-48s21.6-48 48-48 48 21.6 48 48-21.6 48-48 48z" opacity=".25"/>
+              <circle cx="96" cy="96" r="32"/>
+              <path d="M160 16H32C22.4 16 16 22.4 16 32v128c0 9.6 6.4 16 16 16h128c9.6 0 16-6.4 16-16V32c0-9.6-6.4-16-16-16zm0 144H32V32h128v128z"/>
+              <circle cx="96" cy="96" r="48" fill="none" stroke="currentColor" stroke-width="16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="search-buttons" aria-label="Search actions">
+        <button class="search-btn" type="button">Google Search</button>
+        <button class="search-btn" type="button">I'm Feeling Lucky</button>
+      </div>
+
+      <!-- Language Options -->
+      <div class="language-section" aria-label="Language options">
+        <span class="language-section__label">Google offered in:</span>
+        <nav class="language-section__links" aria-label="Available languages">
+          <a href="#" class="language-section__link" lang="hi">हिन्दी</a>
+          <a href="#" class="language-section__link" lang="te">తెలుగు</a>
+          <a href="#" class="language-section__link" lang="ta">தமிழ்</a>
+          <a href="#" class="language-section__link" lang="kn">ಕನ್ನಡ</a>
+          <a href="#" class="language-section__link" lang="ml">മലയാളം</a>
+          <a href="#" class="language-section__link" lang="mr">मराठी</a>
+          <a href="#" class="language-section__link" lang="bn">বাংলা</a>
+          <a href="#" class="language-section__link" lang="gu">ગુજરાતી</a>
+          <a href="#" class="language-section__link" lang="pa">ਪੰਜਾਬੀ</a>
+        </nav>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+
+    <!-- Top footer row: region -->
+    <div class="footer__top">
+      <span class="footer__country">India</span>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer__divider" aria-hidden="true"></div>
+
+    <!-- Bottom footer row: links -->
+    <div class="footer__bottom">
+
+      <nav class="footer__nav footer__nav--left" aria-label="Footer links left">
+        <a href="#" class="footer__link">Advertising</a>
+        <a href="#" class="footer__link">Business</a>
+        <a href="#" class="footer__link">How Search works</a>
+      </nav>
+
+      <nav class="footer__nav footer__nav--right" aria-label="Footer links right">
+        <a href="#" class="footer__link">Privacy</a>
+        <a href="#" class="footer__link">Terms</a>
+        <a href="#" class="footer__link">Settings</a>
+      </nav>
+
+    </div>
+  </footer>
+
+</body>
+</html>

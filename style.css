@@ -1,0 +1,783 @@
+/* ============================================================
+   Google Homepage Clone — style.css
+   Pixel-perfect recreation using Flexbox / CSS Grid
+   Sections: Reset → Variables → Base → Header → Main →
+             Logo → Search → Buttons → Language → Footer →
+             Responsive → Dark Mode → Animations
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. CSS VARIABLES (theme tokens)
+   ---------------------------------------------------------- */
+:root {
+  /* Brand colours */
+  --google-blue:   #4285F4;
+  --google-red:    #EA4335;
+  --google-yellow: #FBBC05;
+  --google-green:  #34A853;
+
+  /* UI colours */
+  --bg:            #ffffff;
+  --surface:       #f8f9fa;
+  --border:        #dfe1e5;
+  --border-hover:  #ccc;
+  --shadow-color:  rgba(0,0,0,.20);
+  --shadow-hover:  rgba(0,0,0,.30);
+  --text-primary:  #202124;
+  --text-secondary:#70757a;
+  --text-link:     #1a0dab;
+  --text-nav:      #202124;
+
+  /* Nav avatar */
+  --avatar-bg:     #1a73e8;
+  --avatar-color:  #fff;
+
+  /* Search bar */
+  --search-radius:    24px;
+  --search-height:    46px;
+  --search-max-width: 584px;
+
+  /* Footer */
+  --footer-bg:     #f2f2f2;
+  --footer-border: #e4e4e4;
+  --footer-height: 56px;
+
+  /* Transitions */
+  --t-fast:  .15s ease;
+  --t-base:  .25s ease;
+
+  /* Typography */
+  --font-ui: 'Google Sans', arial, sans-serif;
+  --font-logo-size: 92px;
+}
+
+/* ----------------------------------------------------------
+   2. RESET & BASE
+   ---------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+svg {
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   3. HEADER / NAV
+   ---------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 0;
+  height: 60px;
+}
+
+/* ---- Nav left ---- */
+.nav__left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---- Nav right ---- */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---- Shared nav link ---- */
+.nav__link {
+  font-size: 13px;
+  color: var(--text-nav);
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background var(--t-fast), color var(--t-fast);
+  white-space: nowrap;
+}
+
+.nav__link:hover {
+  background: rgba(60,64,67,.08);
+  text-decoration: underline;
+}
+
+/* ---- Grid / apps icon button ---- */
+.nav__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background var(--t-fast);
+  padding: 8px;
+}
+
+.nav__icon-btn:hover {
+  background: rgba(60,64,67,.08);
+}
+
+.nav__icon {
+  width: 20px;
+  height: 20px;
+  fill: #5f6368;
+}
+
+/* ---- Profile avatar ---- */
+.nav__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  color: var(--avatar-color);
+  font-size: 13px;
+  font-weight: 600;
+  transition: box-shadow var(--t-fast);
+  margin-left: 4px;
+}
+
+.nav__avatar:hover {
+  box-shadow: 0 1px 3px var(--shadow-color), 0 4px 8px rgba(26,115,232,.3);
+}
+
+.nav__avatar-letter {
+  line-height: 1;
+  user-select: none;
+}
+
+/* ----------------------------------------------------------
+   4. MAIN — body centre area
+   ---------------------------------------------------------- */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Push content up from true-centre: Google lands logo ~38% from top */
+  padding-top: clamp(80px, 14vh, 120px);
+  padding-bottom: 100px; /* leave room for sticky footer */
+}
+
+/* ----------------------------------------------------------
+   5. GOOGLE LOGO
+   ---------------------------------------------------------- */
+.logo-section {
+  margin-bottom: 28px;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+  user-select: none;
+}
+
+.logo__letter {
+  font-family: 'Product Sans', 'Google Sans', arial, sans-serif;
+  font-size: var(--font-logo-size);
+  font-weight: 700;
+  letter-spacing: -2px;
+  /* Crisp rendering */
+  -webkit-font-smoothing: antialiased;
+  transition: transform var(--t-base);
+}
+
+.logo__letter:hover {
+  transform: scale(1.05) translateY(-2px);
+}
+
+.logo__letter--blue   { color: var(--google-blue);   }
+.logo__letter--red    { color: var(--google-red);     }
+.logo__letter--yellow { color: var(--google-yellow);  }
+.logo__letter--green  { color: var(--google-green);   }
+
+/* ----------------------------------------------------------
+   6. SEARCH SECTION
+   ---------------------------------------------------------- */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+/* ---- Search bar container ---- */
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--search-max-width);
+  height: var(--search-height);
+  border: 1px solid var(--border);
+  border-radius: var(--search-radius);
+  background: var(--bg);
+  box-shadow: none;
+  transition:
+    box-shadow var(--t-base),
+    border-color var(--t-base);
+  overflow: hidden; /* keeps icons inside rounded corners */
+}
+
+/* Hover state */
+.search-bar:hover {
+  border-color: transparent;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  border-radius: var(--search-radius);
+}
+
+/* Focus state — triggered when input inside is focused */
+.search-bar:focus-within {
+  border-color: transparent;
+  box-shadow: 0 1px 6px 0 var(--shadow-color);
+  border-radius: var(--search-radius) var(--search-radius) 0 0;
+  /* In a real Google page the dropdown causes the bottom corners
+     to go square; we approximate with the above */
+  border-radius: var(--search-radius);
+}
+
+/* ---- Left search icon ---- */
+.search-bar__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  pointer-events: none;
+}
+
+.search-bar__icon svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-secondary);
+}
+
+/* ---- Input ---- */
+.search-bar__input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: var(--text-primary);
+  caret-color: var(--google-blue);
+  /* Reset browser search-type styles */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Remove the browser's default clear button */
+.search-bar__input::-webkit-search-cancel-button,
+.search-bar__input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  display: none;
+}
+
+/* ---- Right icons group ---- */
+.search-bar__right-icons {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+  gap: 2px;
+}
+
+.search-bar__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background var(--t-fast);
+  padding: 6px;
+}
+
+.search-bar__icon-btn:hover {
+  background: rgba(60,64,67,.08);
+}
+
+/* Voice icon */
+.search-bar__icon-btn:first-child svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--google-blue);
+}
+
+/* Lens icon */
+.search-bar__icon-btn:last-child svg {
+  width: 22px;
+  height: 22px;
+  fill: #5f6368;
+}
+
+/* Divider between the right icons */
+.search-bar__right-icons::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  margin-right: 8px;
+}
+
+/* ----------------------------------------------------------
+   7. SEARCH BUTTONS
+   ---------------------------------------------------------- */
+.search-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition:
+    background var(--t-fast),
+    border-color var(--t-fast),
+    box-shadow var(--t-fast),
+    color var(--t-fast);
+}
+
+.search-btn:hover {
+  background: #f8f8f8;
+  border-color: var(--border-hover);
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  color: var(--text-primary);
+}
+
+.search-btn:active {
+  box-shadow: none;
+  background: #f0f0f0;
+}
+
+/* ----------------------------------------------------------
+   8. LANGUAGE SECTION
+   ---------------------------------------------------------- */
+.language-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.language-section__label {
+  white-space: nowrap;
+}
+
+.language-section__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.language-section__link {
+  color: var(--google-blue);
+  font-size: 13px;
+  transition: text-decoration var(--t-fast), color var(--t-fast);
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+
+.language-section__link:hover {
+  text-decoration: underline;
+  color: #1558d6;
+}
+
+.language-section__link:focus-visible {
+  outline: 2px solid var(--google-blue);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------
+   9. FOOTER
+   ---------------------------------------------------------- */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--footer-bg);
+  z-index: 100;
+}
+
+/* Top footer row */
+.footer__top {
+  display: flex;
+  align-items: center;
+  padding: 15px 24px 10px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+/* Horizontal divider */
+.footer__divider {
+  height: 1px;
+  background: var(--footer-border);
+  margin: 0;
+}
+
+/* Bottom footer row */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px 14px;
+}
+
+.footer__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.footer__link {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 5px 10px;
+  border-radius: 2px;
+  transition: color var(--t-fast);
+  white-space: nowrap;
+}
+
+.footer__link:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.footer__link:focus-visible {
+  outline: 2px solid var(--google-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ----------------------------------------------------------
+   10. FOCUS STYLES (accessibility)
+   ---------------------------------------------------------- */
+.nav__link:focus-visible,
+.nav__icon-btn:focus-visible,
+.nav__avatar:focus-visible,
+.search-btn:focus-visible {
+  outline: 3px solid var(--google-blue);
+  outline-offset: 2px;
+}
+
+.search-bar__input:focus {
+  /* handled by search-bar:focus-within */
+  outline: none;
+}
+
+/* ----------------------------------------------------------
+   11. RESPONSIVE — Tablet (≤768px)
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  :root {
+    --font-logo-size: 68px;
+    --search-max-width: 480px;
+    --search-height: 44px;
+  }
+
+  .main {
+    padding-top: clamp(70px, 16vh, 100px);
+  }
+
+  /* Nav: hide "About" and "Store" to reduce clutter */
+  .nav__left {
+    gap: 0;
+  }
+
+  .nav__link {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  /* Footer stacks on narrow screens */
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px 12px;
+  }
+
+  .footer__nav {
+    justify-content: center;
+  }
+}
+
+/* ----------------------------------------------------------
+   12. RESPONSIVE — Mobile (≤480px)
+   ---------------------------------------------------------- */
+@media (max-width: 480px) {
+
+  :root {
+    --font-logo-size: 56px;
+    --search-height:  44px;
+  }
+
+  /* Hide left nav entirely on very small screens */
+  .nav__left {
+    display: none;
+  }
+
+  .nav {
+    justify-content: flex-end;
+  }
+
+  .logo-section {
+    margin-bottom: 20px;
+  }
+
+  .logo__letter {
+    letter-spacing: -1px;
+  }
+
+  .search-section {
+    padding: 0 16px;
+  }
+
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .search-buttons {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .search-btn {
+    font-size: 13px;
+    padding: 0 14px;
+  }
+
+  .language-section {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+
+  .language-section__link {
+    font-size: 12px;
+  }
+
+  .footer__top {
+    padding: 12px 16px 8px;
+    font-size: 14px;
+  }
+
+  .footer__bottom {
+    padding: 6px 12px 10px;
+  }
+
+  .footer__link {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* ----------------------------------------------------------
+   13. DARK MODE — via prefers-color-scheme
+   ---------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --bg:              #202124;
+    --surface:         #303134;
+    --border:          #5f6368;
+    --border-hover:    #888;
+    --shadow-color:    rgba(0,0,0,.45);
+    --shadow-hover:    rgba(0,0,0,.60);
+    --text-primary:    #e8eaed;
+    --text-secondary:  #9aa0a6;
+    --text-link:       #8ab4f8;
+    --text-nav:        #e8eaed;
+
+    --avatar-bg:       #1a73e8;
+
+    --footer-bg:       #171717;
+    --footer-border:   #3c4043;
+  }
+
+  .search-bar {
+    background: var(--bg);
+    border-color: var(--border);
+  }
+
+  .search-bar:hover,
+  .search-bar:focus-within {
+    border-color: transparent;
+    box-shadow: 0 1px 6px var(--shadow-color);
+  }
+
+  .search-bar__input {
+    color: var(--text-primary);
+    /* Chrome dark-mode autofill fix */
+    -webkit-text-fill-color: var(--text-primary);
+    caret-color: var(--google-blue);
+  }
+
+  .search-bar__icon svg {
+    fill: var(--text-secondary);
+  }
+
+  .nav__icon {
+    fill: #9aa0a6;
+  }
+
+  .nav__icon-btn:hover {
+    background: rgba(232,234,237,.08);
+  }
+
+  .search-btn {
+    color: var(--text-primary);
+    background: var(--surface);
+  }
+
+  .search-btn:hover {
+    background: #3c4043;
+    border-color: var(--border);
+    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  }
+
+  .footer__link:hover {
+    color: var(--text-primary);
+  }
+}
+
+/* ----------------------------------------------------------
+   14. ANIMATIONS
+   ---------------------------------------------------------- */
+
+/* Page-load fade-in for main content */
+.logo-section,
+.search-section {
+  animation: fadeUp .4s ease both;
+}
+
+.logo-section {
+  animation-delay: 0s;
+}
+
+.search-section {
+  animation-delay: .08s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo letter stagger on load */
+.logo__letter:nth-child(1) { animation: logoPop .5s .05s ease both; }
+.logo__letter:nth-child(2) { animation: logoPop .5s .10s ease both; }
+.logo__letter:nth-child(3) { animation: logoPop .5s .15s ease both; }
+.logo__letter:nth-child(4) { animation: logoPop .5s .20s ease both; }
+.logo__letter:nth-child(5) { animation: logoPop .5s .25s ease both; }
+.logo__letter:nth-child(6) { animation: logoPop .5s .30s ease both; }
+
+@keyframes logoPop {
+  from {
+    opacity: 0;
+    transform: scale(.85) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Search bar animated focus ring */
+.search-bar::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--search-radius) + 2px);
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: border-color var(--t-base);
+}
+
+.search-bar:focus-within::after {
+  border-color: rgba(66,133,244,.0); /* subtle; real Google uses shadow only */
+}
+
+/* Floating shadow on search bar hover */
+.search-bar:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--search-radius);
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  pointer-events: none;
+}
